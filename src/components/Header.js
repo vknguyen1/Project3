@@ -1,21 +1,24 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-const Styledheader = styled.header`
-  display: flexed;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
-`;
 
 function Header(props) {
   return (
-    <nav className="nav">
-      <Link to="/">
-        <div>Fitness</div>
-      </Link>
-    </nav>
+    <div className="header">
+      <nav className="nav-bar">
+        <div className="logo">
+          <Link to="/">
+            <div>Fitness App</div>
+          </Link>
+        </div>
+        <div className="nav-item">
+          <ul className="nav-list">
+            <li>Contact</li>
+            <li>About</li>
+            <li>Login</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   );
 }
 

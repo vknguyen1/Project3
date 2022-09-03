@@ -8,7 +8,7 @@ import Chest from '../Images/Chest.png';
 import Legs from '../Images/Legs.png';
 import Shoulder from '../Images/Shoulder.png';
 import workoutArr from '../workoutList';
-import BodyPart from '../components/BodyParts';
+import Index from './Index';
 
 function Plan(props) {
   const [workoutList, setWorkoutList] = useState(workoutArr);
@@ -21,40 +21,78 @@ function Plan(props) {
 
   const handleClick = (ele) => {
     let filtered = workoutList.filter((w) => {
-      return w.bodyPart === ele.target.name;
+      return w.muscleGroup === ele.target.name;
     });
-    console.log(filtered);
     setFilteredWorkoutList(filtered);
   };
 
-  useEffect(() => {
-    console.log(filteredWorkoutList);
-  }, [filteredWorkoutList]);
+  useEffect(() => {}, [filteredWorkoutList]);
 
   return (
-    <>
+    <div className="plan">
       <h1>Choose a muscle group</h1>
-      <div className="workout-select">
-        <img src={Chest} onClick={handleClick} name="Chest"></img>
-        <img src={Back} onClick={handleClick} name="Back"></img>
-        <img src={Shoulder} onClick={handleClick} name="Shoulders"></img>
-        <img src={Legs} onClick={handleClick} name="Legs"></img>
-        <img src={Arms} onClick={handleClick} name="Arms"></img>
-        <img src={Abs} onClick={handleClick} name="Abs"></img>
+
+      <div className="workout-row-1">
+        <img
+          className="muscle-img"
+          alt="chest"
+          src={Chest}
+          onClick={handleClick}
+          name="Chest"
+        ></img>
+        <img
+          className="muscle-img"
+          alt="back"
+          src={Back}
+          onClick={handleClick}
+          name="Back"
+        ></img>
+        <img
+          className="muscle-img"
+          alt="shoulder"
+          src={Shoulder}
+          onClick={handleClick}
+          name="Shoulders"
+        ></img>
+      </div>
+      <div className="workout-row-2">
+        <img
+          className="muscle-img"
+          alt="legs"
+          src={Legs}
+          onClick={handleClick}
+          name="Legs"
+        ></img>
+        <img
+          className="muscle-img"
+          alt="arms"
+          src={Arms}
+          onClick={handleClick}
+          name="Arms"
+        ></img>
+        <img
+          className="muscle-img"
+          alt="abs"
+          src={Abs}
+          onClick={handleClick}
+          name="Abs"
+        ></img>
       </div>
 
       {filteredWorkoutList.length > 0 ? (
         filteredWorkoutList.map((e, index) => (
           <article key={index}>
-            <div classname="worlout-list">
-              <h2>{e.workoutName}</h2>
+            <div className="workout-list">
+              <Link to={`/workout-create?workoutName=${e.workoutName}`}>
+                <h2>{e.workoutName}</h2>
+              </Link>
             </div>
           </article>
         ))
       ) : (
-        <p>Select a workout</p>
+        <p></p>
       )}
-    </>
+    </div>
   );
 }
 

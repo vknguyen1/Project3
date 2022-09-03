@@ -2,12 +2,24 @@ import { Link } from 'react-router-dom';
 
 function Home(props) {
   return (
-    <>
-      <h1>Home Page</h1>
-      <Link to="/workout-plans">
-        <h2>Get Started</h2>
-      </Link>
-    </>
+    <div className="home">
+      <div className="title">
+        <h1>Welcome to the fitness App!</h1>
+        <h2>Lets get started!</h2>
+      </div>
+      <div className="home-content">
+        <div className="tile-box">
+          <Link to="/workout-plans">
+            <button className="button">Choose an excercise</button>
+          </Link>
+        </div>
+        <div className="tile-box">
+          <Link to="/workout-log">
+            <button className="button">View your excercise log</button>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
 

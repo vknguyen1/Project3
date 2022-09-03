@@ -1,13 +1,301 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Maison Neue', 'Helvetica Neue', Helvetica, Arial,
+    'Lucida Grande', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* header css */
+.header {
+  width: 100%;
+  position: absolute;
+  background: #2c5777;
+  border: black 1px solid;
+}
+.nav-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+  width: 900px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  display: flex;
+
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav-list li {
+  display: inline;
+}
+
+/* Home CSS */
+.home {
+  background-image: url('https://hips.hearstapps.com/hmg-prod/images/austrian-born-bodybuilder-arnold-schwarzenegger-points-one-news-photo-1584730817.jpg?resize=1200:*');
+  background-size: 1250px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 900px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  top: 106px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  font-size: 24px;
+  padding: 24px;
+}
+.home-content {
+  width: 100%;
+  height: calc(100vh - 350px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.tile-box {
+  display: flex;
+  justify-content: center;
+  /* width: 250px;
+  height: 250px; */
+}
+
+/* Home CSS End */
+/* Plan CSS */
+.plan {
+  background-color: #6eb1e4;
+  height: 100vh;
+  width: 40%;
+}
+.plan h1 {
+  margin: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.workout-row-1 {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.workout-row-2 {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.muscle-img {
+  border: black 1px solid;
+  height: 200px;
+  width: 200px;
+}
+
+.workout-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+}
+
+/* Index CSS */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  width: 900px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 106px;
+}
+
+.table {
+  width: 100%;
+  height: 50%;
+  border: 2px solid black;
+}
+
+table,
+td,
+th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #6eb1e4;
+}
+
+th {
+  height: 70px;
+}
+
+/* Show CSS*/
+.show-container {
+  width: 900px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  top: 106px;
+}
+/*Footer CSS */
+.footer {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background: #2c5777;
+  border: black 1px solid;
+  color: white;
+  font-size: 15px;
+  width: 100%;
+  height: 2.5rem;
+}
+
+/* Create Form */
+
+.workout-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightblue;
+  border-radius: 2px solid black;
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  top: 106px;
+}
+
+.workout-form h1 {
+  font-size: 24px;
+  text-decoration-line: underline;
+}
+
+input[type='text'] {
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+input[type='number'] {
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type='text']:focus {
+  border-color: #333;
+}
+
+input[type='submit'] {
+  padding: 5px 15px;
+  background: #ccc;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* Button CSS */
+.button {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, 0.7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, 'Segoe UI', 'Liberation Sans',
+    sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px 0.8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+}
+
+.button:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+/* Default height for small devices */
+#intro-example {
+  height: 400px;
+}
+
+/* Height for devices larger than 992px */
+@media (min-width: 992px) {
+  #intro-example {
+    height: 600px;
+  }
 }
