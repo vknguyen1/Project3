@@ -24,3 +24,12 @@ Workout Tracker will allow you to select workouts by muscle group and log your w
 Allow users to post their workout in a social media feed where others can interact with.
 
 Allow users to view graphs of their progression.
+
+- api keys
+
+'X-RapidAPI-Key':
+'6f3d0cfb70msh30a70a95b51b3eep1d7a15jsn4bbb89ecd219',
+'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
+
+'X-RapidAPI-Key': '96c6804c09msh75ddb823a8a9febp1af3cejsn70ca447764db',
+'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'

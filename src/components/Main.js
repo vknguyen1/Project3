@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 function Main() {
   const [workout, setWorkout] = useState(null);
-
+  const [exercise, setExercise] = useState(null);
   const API_URL = 'http://localhost:4000/api/workout';
 
   const getWorkout = async () => {
@@ -16,12 +16,31 @@ function Main() {
       const response = await fetch(API_URL, {
         method: 'GET',
       });
-
       const data = await response.json();
-      console.log(data);
       setWorkout(data);
     } catch (error) {
-      //TODO:
+      console.log(error);
+    }
+  };
+
+  const getExercise = async () => {
+    try {
+      const response = await fetch(
+        'https://exercisedb.p.rapidapi.com/exercises',
+        {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key':
+              '6f3d0cfb70msh30a70a95b51b3eep1d7a15jsn4bbb89ecd219',
+            'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
+          },
+        },
+      );
+      const exerciseData = await response.json();
+
+      setExercise(exerciseData);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -40,6 +59,8 @@ function Main() {
 
   useEffect(() => {
     getWorkout();
+    getExercise();
+    console.log(exercise);
   }, []);
 
   const updateLog = async (id, updatedLog) => {
@@ -64,9 +85,7 @@ function Main() {
         },
       });
       getWorkout();
-    } catch (error) {
-      //TODO
-    }
+    } catch (error) {}
   };
 
   return (
@@ -76,7 +95,7 @@ function Main() {
         path="/workout-log"
         element={<Index workout={workout} deleteLog={deleteLog} />}
       />
-      <Route path="/workout-plans" element={<Plan />} />
+      <Route path="/workout-plans" element={<Plan exercise={exercise} />} />
       <Route
         path="/workout-create"
         element={<Create createLog={createLog} />}

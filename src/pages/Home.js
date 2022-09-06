@@ -4,7 +4,7 @@ function Home(props) {
   return (
     <div className="home">
       <div className="title">
-        <h1>Welcome to the fitness App!</h1>
+        <h1>Welcome to the Body Building App!</h1>
         <h2>Lets get started!</h2>
       </div>
       <div className="home-content">
