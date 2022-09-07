@@ -1,7 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Navigate, useNavigate, useLocation } from 'react-router-dom';
-
-import workoutArr from '../workoutList';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function useQuery() {
   //search is a string of workoutName=blah and URLSearch
@@ -39,8 +37,16 @@ function Create({ createLog }) {
       <form onSubmit={handleSubmit} className="workout-form">
         <h1>Log your excercise</h1>
         <div className="workout-row-1">
-          <label className="workout-select">Select a workout</label>
-          <select
+          <label className="workout-select">Workout Name</label>
+          <input
+            type="string"
+            value={newForm.workoutName}
+            name="weight"
+            onChange={handleChange}
+            placeholder="in lbs"
+          />
+
+          {/* <select
             value={newForm.workoutName}
             onChange={handleChange}
             name="workoutName"
@@ -48,7 +54,7 @@ function Create({ createLog }) {
             {workoutArr.map((e, index) => (
               <option key={index}>{e.workoutName}</option>
             ))}
-          </select>
+          </select> */}
           <label className="workout-select">Weight</label>
           <input
             type="number"
@@ -67,14 +73,14 @@ function Create({ createLog }) {
           />
         </div>
         <div className="workout-row-2">
-          <label className="workout-select">type</label>
-          <input
+          {/* <label className="workout-select">type</label> */}
+          {/* <input
             type="text"
             value={newForm.type}
             name="type"
             onChange={handleChange}
             placeholder="barbell, dumbells, cables"
-          />
+          /> */}
 
           <input type="submit" value="Log workout" />
         </div>

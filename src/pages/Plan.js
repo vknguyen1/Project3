@@ -8,12 +8,16 @@ import Legs from '../Images/Legs.png';
 import Shoulder from '../Images/Shoulder.png';
 import workoutArr from '../workoutList';
 
-function Plan({ excercise }) {
-  const [workoutList, setWorkoutList] = useState(workoutArr);
+function Plan(props) {
+  // const [workoutList, setWorkoutList] = useState(workoutArr);
   const [filteredWorkoutList, setFilteredWorkoutList] = useState([]);
-  const [exerciseList, setExcerciseList] = useState(null);
+  const [exerciseList, setExerciseList] = useState(null);
+  const [muscleGroup, setMuscleGroup] = useState('chest');
+  const [equipment, setEquipment] = useState('barbell');
+  const [gif, setGIF] = useState(null);
   const [newForm, setNewForm] = useState({
-    name: '',
+    bodyPart: '',
+    equipment: '',
   });
 
   const getExercise = async () => {
@@ -31,123 +35,184 @@ function Plan({ excercise }) {
       );
       const exerciseData = await response.json();
 
-      setExcerciseList(exerciseData);
+      setExerciseList(exerciseData);
     } catch (error) {
       console.log(error);
     }
   };
+  // const handleClick = (ele) => {
+  //   let filtered = exerciseList.filter((w) => {
+  //     return w.bodyPart === ele.target.name;
+  //   });
+  //   setNewForm(filtered);
+  //   console.log(filtered);
+  // };
+
   const handleClick = (ele) => {
-    let filtered = exerciseList.filter((w) => {
-      return w.bodyPart === ele.target.name;
-    });
-    setFilteredWorkoutList(filtered);
-    console.log(filtered);
+    setMuscleGroup(ele.target.name);
+    console.log(exerciseList);
   };
 
   const handleChange = (event) => {
-    setNewForm((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
+    setEquipment(event.target.value);
+    console.log(equipment);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let filteredExerciseList = exerciseList.filter((w) => {
+      return w.bodyPart === muscleGroup && w.equipment === equipment;
+    });
+    setFilteredWorkoutList(filteredExerciseList);
+    console.log(filteredExerciseList);
   };
+
+  const handleGif = (exercise) => {
+    setGIF(exercise);
+  };
+  // const handleChange = (event) => {
+  //   setNewForm((prevState) => ({
+  //     ...prevState,
+  //     [event.target.name]: event.target.value,
+  //   }));
+  // console.log(event.target.value);
+  // };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   let newFilter = [newForm].filter((w) => {
+  //     console.log(w);
+  //     return w.equipment === newForm.equipment;
+  //   });
+  //   setNewForm(newFilter);
+  //   // console.log(newForm);
+  // };
 
   useEffect(() => {
     getExercise();
   }, [filteredWorkoutList]);
 
   return (
-    <div className="plan">
-      <h1>Choose a muscle group</h1>
+    <>
+      <div className="plan">
+        <h1>Choose a muscle group</h1>
+        <div className="img-container">
+          <div className="workout-row-1">
+            <img
+              className="muscle-img"
+              alt="chest"
+              src={Chest}
+              onClick={handleClick}
+              name="chest"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">chest</div>
+            </div>
+            <img
+              className="muscle-img"
+              alt="back"
+              src={Back}
+              onClick={handleClick}
+              name="back"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">Back</div>
+            </div>
+            <img
+              className="muscle-img"
+              alt="shoulder"
+              src={Shoulder}
+              onClick={handleClick}
+              name="shoulders"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">Shoulder</div>
+            </div>
+          </div>
+          <div className="workout-row-2">
+            <img
+              className="muscle-img"
+              alt="legs"
+              src={Legs}
+              onClick={handleClick}
+              name="upper legs"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">Legs</div>
+            </div>
+            <img
+              className="muscle-img"
+              alt="arms"
+              src={Arms}
+              onClick={handleClick}
+              name="biceps"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">Arms</div>
+            </div>
+            <img
+              className="muscle-img"
+              alt="abs"
+              src={Abs}
+              onClick={handleClick}
+              name="abs"
+            ></img>
+            <div className="overlay">
+              <div className="overlay-text">Abs</div>
+            </div>
+          </div>
+        </div>
+        <div className="select-workout">
+          <form
+            onSubmit={handleSubmit}
+            className="workout-select"
+            onChange={handleChange}
+          >
+            <label>Pick Equipment</label>
+            <select defaultValue="barbell" name="equipment">
+              <option>barbell</option>
+              <option>cable</option>
+              <option>dumbbell</option>
+            </select>
+            <input type="submit" value="submit" />
+          </form>
+        </div>
 
-      <div className="workout-row-1">
-        <img
-          className="muscle-img"
-          alt="chest"
-          src={Chest}
-          onClick={handleClick}
-          name="chest"
-        ></img>
-        <img
-          className="muscle-img"
-          alt="back"
-          src={Back}
-          onClick={handleClick}
-          name="back"
-        ></img>
-        <img
-          className="muscle-img"
-          alt="shoulder"
-          src={Shoulder}
-          onClick={handleClick}
-          name="shoulders"
-        ></img>
+        <div className="workout-list-container">
+          <div>
+            {filteredWorkoutList.length > 0 ? (
+              filteredWorkoutList.map((e, index) => (
+                <article key={index}>
+                  <div className="workout-list">
+                    <h2
+                      className="listItem"
+                      name={e.name}
+                      onClick={() => {
+                        handleGif(e.gifUrl);
+                      }}
+                    >
+                      {e.name}
+                    </h2>
+                    <Link to={`/workout-create?workoutName=${e.name}`}>
+                      <button className="button">Log</button>
+                    </Link>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <p></p>
+            )}
+          </div>
+        </div>
       </div>
-      <div className="workout-row-2">
-        <img
-          className="muscle-img"
-          alt="legs"
-          src={Legs}
-          onClick={handleClick}
-          name="segs"
-        ></img>
-        <img
-          className="muscle-img"
-          alt="arms"
-          src={Arms}
-          onClick={handleClick}
-          name="arms"
-        ></img>
-        <img
-          className="muscle-img"
-          alt="abs"
-          src={Abs}
-          onClick={handleClick}
-          name="abs"
-        ></img>
-      </div>
-
-      <div className="select-workout">
-        <form onSubmit={handleSubmit} className="workout-select">
-          <label>Pick Equipment</label>
-          <select>
-            <option>pick type of equipment</option>
-            <option>pick type of equipment</option>
-            <option>pick type of equipment</option>
-            <option>pick type of equipment</option>
-            <option>pick type of equipment</option>
-          </select>
-          <input type="submit" value="submit" />
-        </form>
-      </div>
-
-      {/* 
-       {filteredWorkoutList.length > 0 ? (
-        filteredWorkoutList.map((e, index) => ( 
-            <article key={index}>
-             <select 
-               onChange={handleChange}
-               name="name"
-               defaultValue={filteredWorkoutList.name}
-             >
-               {workoutArr.map((e, index) => (
-                 <option key={index}>{e.name}</option>
-               ))}
-             </select>
-             <div className="workout-list">
-              <Link to={`/workout-create?workoutName=${e.name}`}>
-                <h2>{e.name}</h2>
-              </Link>
-            </div> 
-           </article>
-         ))
-       ) : (
-         <p></p>
-       )} */}
-    </div>
+      {setGIF ? (
+        <div className="gif">
+          {' '}
+          <img src={gif} />
+        </div>
+      ) : null}
+    </>
   );
 }
 
