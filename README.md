@@ -29,6 +29,7 @@ Workout Tracker will allow you to select workouts by muscle group and log your w
 # Unsolved Issues
 
 Styling
+User Profiles
 
 # Future Enhancements
 
