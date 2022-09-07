@@ -14,6 +14,13 @@ Workout Tracker will allow you to select workouts by muscle group and log your w
 - CCS3
 - JavaScript
 - React
+- Bodybuilding API
+
+
+# Screenshots
+
+[img1](./src/Images/Screen%20Shot%202022-09-06%20at%206.32.55%20PM.png)
+[img1](./src/Images/Screen%20Shot%202022-09-06%20at%206.33.11%20PM.png)
 
 # Getting Started
 
