@@ -28,14 +28,14 @@ Workout Tracker will allow you to select workouts by muscle group and log your w
 
 # Unsolved Issues
 
-Styling
-User Profiles
+- Styling- 
+- User Profiles
 
 # Future Enhancements
 
-Allow users to post their workout in a social media feed where others can interact with.
+- Allow users to post their workout in a social media feed where others can interact with.
 
-Allow users to view graphs of their progression.
+- Allow users to view graphs of their progression.
 
-Deploy an interactable calener
+- Deploy an interactable calener
 
